@@ -8,7 +8,8 @@ import Notifications from "@material-ui/icons/Notifications";
 // core components/views
 import DashboardPage from "views/Dashboard/Dashboard.jsx";
 import UserProfile from "views/UserProfile/UserProfile.jsx";
-import TableList from "views/TableList/TableList.jsx";
+import PeopleTableList from "views/TableList/PeopleTableList.jsx";
+import CarTableList from "views/TableList/CarTableList.jsx";
 import Typography from "views/Typography/Typography.jsx";
 import Maps from "views/Maps/Maps.jsx";
 import NotificationsPage from "views/Notifications/Notifications.jsx";
@@ -29,11 +30,18 @@ const dashboardRoutes = [
     component: UserProfile
   },
   {
-    path: "/table",
-    sidebarName: "Table List",
-    navbarName: "Table List",
+    path: "/cartable",
+    sidebarName: "Found Cars",
+    navbarName: "Found Cars",
     icon: "content_paste",
-    component: TableList
+    component: PeopleTableList
+  },
+  {
+    path: "/peopletable",
+    sidebarName: "Found People",
+    navbarName: "Found People",
+    icon: "content_paste",
+    component: CarTableList
   },
   {
     path: "/typography",
