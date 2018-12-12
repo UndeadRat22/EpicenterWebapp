@@ -8,6 +8,7 @@ import Table from "components/Table/Table.jsx";
 import Card from "components/Card/Card.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import CardBody from "components/Card/CardBody.jsx";
+import ListImage from "components/Image/ListImage.jsx";
 
 const styles = {
   cardCategoryWhite: {
@@ -36,6 +37,10 @@ const styles = {
       fontWeight: "400",
       lineHeight: "1"
     }
+  },
+  listImage: {
+    width: 50,
+    height: 50
   }
 };
 
@@ -56,13 +61,64 @@ function PeopleTableList(props) {
           <CardBody>
             <Table
               tableHeaderColor="primary"
-              tableHead={["First Name", "Last Name", "Search Reason", "Time"]}
+              tableHead={[
+                "Photo",
+                "First Name",
+                "Last Name",
+                "Search Reason",
+                "Time"
+              ]}
               tableData={[
-                ["Nigger", "Faggot", "Criminal", "2018-09-01"],
-                ["Nigger", "Faggot", "Criminal", "2018-09-01"],
-                ["Nigger", "Faggot", "Criminal", "2018-09-01"],
-                ["Nigger", "Faggot", "Criminal", "2018-09-01"],
-                ["Nigger", "Faggot", "Criminal", "2018-09-01"]
+                [
+                  <ListImage
+                    src={"https://www.w3schools.com/w3css/img_lights.jpg"}
+                    key={0}
+                  />,
+                  "Nigger",
+                  "Faggot",
+                  "Criminal",
+                  "2018-09-01"
+                ],
+                [
+                  <ListImage
+                    src={"https://www.w3schools.com/w3css/img_lights.jpg"}
+                    key={0}
+                  />,
+                  "Nigger",
+                  "Faggot",
+                  "Criminal",
+                  "2018-09-01"
+                ],
+                [
+                  <ListImage
+                    src={"https://www.w3schools.com/w3css/img_lights.jpg"}
+                    key={0}
+                  />,
+                  "Nigger",
+                  "Faggot",
+                  "Criminal",
+                  "2018-09-01"
+                ],
+                [
+                  <ListImage
+                    src={"https://www.w3schools.com/w3css/img_lights.jpg"}
+                    key={0}
+                  />,
+                  "Nigger",
+                  "Faggot",
+                  "Criminal",
+                  "2018-09-01"
+                ],
+                [
+                  <ListImage
+                    src={"https://www.w3schools.com/w3css/img_lights.jpg"}
+                    key={0}
+                  />,
+                  "Nigger",
+                  "Faggot",
+                  "Criminal",
+                  "2018-09-01"
+                ]
               ]}
             />
           </CardBody>

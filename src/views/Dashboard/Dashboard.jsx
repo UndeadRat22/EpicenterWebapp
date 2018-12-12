@@ -108,9 +108,7 @@ class Dashboard extends React.Component {
             <Card>
               <CardHeader color="success">
                 <h4 className={classes.cardTitleWhite}>Last Found People</h4>
-                <p className={classes.cardCategoryWhite}>
-                  New employees on 15th September, 2016
-                </p>
+                <p className={classes.cardCategoryWhite}>Last update: Now</p>
               </CardHeader>
               <CardBody>
                 <Table
@@ -136,9 +134,7 @@ class Dashboard extends React.Component {
             <Card>
               <CardHeader color="warning">
                 <h4 className={classes.cardTitleWhite}>Last Found Cars</h4>
-                <p className={classes.cardCategoryWhite}>
-                  New employees on 15th September, 2016
-                </p>
+                <p className={classes.cardCategoryWhite}>Last update: Now</p>
               </CardHeader>
               <CardBody>
                 <Table
