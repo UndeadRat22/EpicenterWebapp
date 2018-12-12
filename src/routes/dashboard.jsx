@@ -34,14 +34,14 @@ const dashboardRoutes = [
     sidebarName: "Found Cars",
     navbarName: "Found Cars",
     icon: "content_paste",
-    component: PeopleTableList
+    component: CarTableList
   },
   {
     path: "/peopletable",
     sidebarName: "Found People",
     navbarName: "Found People",
     icon: "content_paste",
-    component: CarTableList
+    component: PeopleTableList
   },
   {
     path: "/typography",
