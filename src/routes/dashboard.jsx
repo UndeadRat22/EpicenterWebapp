@@ -13,6 +13,7 @@ import CarTableList from "views/TableList/CarTableList.jsx";
 import Typography from "views/Typography/Typography.jsx";
 import Maps from "views/Maps/Maps.jsx";
 import NotificationsPage from "views/Notifications/Notifications.jsx";
+import Accessibility from "@material-ui/icons/Accessibility";
 
 const dashboardRoutes = [
   {
@@ -33,14 +34,14 @@ const dashboardRoutes = [
     path: "/cartable",
     sidebarName: "Found Cars",
     navbarName: "Found Cars",
-    icon: "content_paste",
+    icon: "directions_car",
     component: CarTableList
   },
   {
     path: "/peopletable",
     sidebarName: "Found People",
     navbarName: "Found People",
-    icon: "content_paste",
+    icon: Accessibility,
     component: PeopleTableList
   },
   {

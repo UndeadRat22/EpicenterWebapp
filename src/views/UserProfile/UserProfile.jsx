@@ -13,7 +13,7 @@ import CardAvatar from "components/Card/CardAvatar.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 
-import avatar from "assets/img/faces/marc.jpg";
+import avatar from "assets/img/faces/skvern.jpg";
 
 const styles = {
   cardCategoryWhite: {
@@ -47,7 +47,7 @@ function UserProfile(props) {
             </CardHeader>
             <CardBody>
               <GridContainer>
-                <GridItem xs={12} sm={12} md={5}>
+                <GridItem xs={12} sm={12} md={12}>
                   <CustomInput
                     labelText="Company (disabled)"
                     id="company-disabled"
@@ -59,7 +59,7 @@ function UserProfile(props) {
                     }}
                   />
                 </GridItem>
-                <GridItem xs={12} sm={12} md={3}>
+                <GridItem xs={12} sm={12} md={12}>
                   <CustomInput
                     labelText="Username"
                     id="username"
@@ -68,7 +68,7 @@ function UserProfile(props) {
                     }}
                   />
                 </GridItem>
-                <GridItem xs={12} sm={12} md={4}>
+                <GridItem xs={12} sm={12} md={12}>
                   <CustomInput
                     labelText="Email address"
                     id="email-address"
@@ -79,7 +79,7 @@ function UserProfile(props) {
                 </GridItem>
               </GridContainer>
               <GridContainer>
-                <GridItem xs={12} sm={12} md={6}>
+                <GridItem xs={12} sm={12} md={12}>
                   <CustomInput
                     labelText="First Name"
                     id="first-name"
@@ -88,7 +88,7 @@ function UserProfile(props) {
                     }}
                   />
                 </GridItem>
-                <GridItem xs={12} sm={12} md={6}>
+                <GridItem xs={12} sm={12} md={12}>
                   <CustomInput
                     labelText="Last Name"
                     id="last-name"
@@ -99,7 +99,7 @@ function UserProfile(props) {
                 </GridItem>
               </GridContainer>
               <GridContainer>
-                <GridItem xs={12} sm={12} md={4}>
+                <GridItem xs={12} sm={12} md={12}>
                   <CustomInput
                     labelText="City"
                     id="city"
@@ -108,7 +108,7 @@ function UserProfile(props) {
                     }}
                   />
                 </GridItem>
-                <GridItem xs={12} sm={12} md={4}>
+                <GridItem xs={12} sm={12} md={12}>
                   <CustomInput
                     labelText="Country"
                     id="country"
@@ -117,7 +117,7 @@ function UserProfile(props) {
                     }}
                   />
                 </GridItem>
-                <GridItem xs={12} sm={12} md={4}>
+                <GridItem xs={12} sm={12} md={12}>
                   <CustomInput
                     labelText="Postal Code"
                     id="postal-code"
@@ -131,7 +131,7 @@ function UserProfile(props) {
                 <GridItem xs={12} sm={12} md={12}>
                   <InputLabel style={{ color: "#AAAAAA" }}>About me</InputLabel>
                   <CustomInput
-                    labelText="Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo."
+                    labelText="Who the fck wrote this xdDDD Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo."
                     id="about-me"
                     formControlProps={{
                       fullWidth: true
@@ -160,9 +160,7 @@ function UserProfile(props) {
               <h6 className={classes.cardCategory}>CEO / CO-FOUNDER</h6>
               <h4 className={classes.cardTitle}>Alec Thompson</h4>
               <p className={classes.description}>
-                Don't be scared of the truth because we need to restart the
-                human foundation in truth And I love you like Kanye loves Kanye
-                I love Rick Owens’ bed design but the back is...
+                nežinau ar šitą vertą palikt :D
               </p>
               <Button color="primary" round>
                 Follow
