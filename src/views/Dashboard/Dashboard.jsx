@@ -114,17 +114,19 @@ class Dashboard extends React.Component {
               </CardHeader>
               <CardBody>
                 <Table
-                  tableHeaderColor="success"
-                  tableHead={["ID", "Name", "Salary", "Country"]}
+                  tableHeaderColor="warning"
+                  tableHead={[
+                    "First Name",
+                    "Last Name",
+                    "Search Reason",
+                    "Time"
+                  ]}
                   tableData={[
-                    ["1", "Dakota Rice", "$36,738", "Niger"],
-                    ["2", "Minerva Hooper", "$23,789", "Curaçao"],
-                    ["3", "Sage Rodriguez", "$56,142", "Netherlands"],
-                    ["4", "Philip Chaney", "$38,735", "Korea, South"],
-                    ["1", "Dakota Rice", "$36,738", "Niger"],
-                    ["2", "Minerva Hooper", "$23,789", "Curaçao"],
-                    ["3", "Sage Rodriguez", "$56,142", "Netherlands"],
-                    ["4", "Philip Chaney", "$38,735", "Korea, South"]
+                    ["Nigger", "Faggot", "Criminal", "2018-09-01"],
+                    ["Nigger", "Faggot", "Criminal", "2018-09-01"],
+                    ["Nigger", "Faggot", "Criminal", "2018-09-01"],
+                    ["Nigger", "Faggot", "Criminal", "2018-09-01"],
+                    ["Nigger", "Faggot", "Criminal", "2018-09-01"]
                   ]}
                 />
               </CardBody>
@@ -140,17 +142,20 @@ class Dashboard extends React.Component {
               </CardHeader>
               <CardBody>
                 <Table
-                  tableHeaderColor="warning"
-                  tableHead={["ID", "Name", "Salary", "Country"]}
+                  tableHeaderColor="success"
+                  tableHead={[
+                    "Car Plate Number",
+                    "First Name",
+                    "Last Name",
+                    "Search Reason",
+                    "Time"
+                  ]}
                   tableData={[
-                    ["1", "Dakota Rice", "$36,738", "Niger"],
-                    ["2", "Minerva Hooper", "$23,789", "Curaçao"],
-                    ["3", "Sage Rodriguez", "$56,142", "Netherlands"],
-                    ["4", "Philip Chaney", "$38,735", "Korea, South"],
-                    ["1", "Dakota Rice", "$36,738", "Niger"],
-                    ["2", "Minerva Hooper", "$23,789", "Curaçao"],
-                    ["3", "Sage Rodriguez", "$56,142", "Netherlands"],
-                    ["4", "Philip Chaney", "$38,735", "Korea, South"]
+                    ["699XXX", "Nigger", "got", "Criminal", "2018-09-01"],
+                    ["699XXX", "Nigger", "Faggot", "Criminal", "2018-09-01"],
+                    ["699XXX", "Nigger", "Faggot", "Criminal", "2018-09-01"],
+                    ["699XXX", "Nigger", "Faggot", "Criminal", "2018-09-01"],
+                    ["699XXX", "Nigger", "Faggot", "Criminal", "2018-09-01"]
                   ]}
                 />
               </CardBody>
