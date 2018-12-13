@@ -17,7 +17,7 @@ import Accessibility from "@material-ui/icons/Accessibility";
 
 const dashboardRoutes = [
   {
-    path: "/dashboard",
+    path: "/home",
     sidebarName: "Home",
     navbarName: "Epicenter Home",
     icon: Dashboard,
@@ -51,7 +51,7 @@ const dashboardRoutes = [
     icon: LocationOn,
     component: Maps
   },
-  { redirect: true, path: "/", to: "/dashboard", navbarName: "Redirect" }
+  { redirect: true, path: "/", to: "/home", navbarName: "Redirect" }
 ];
 
 export default dashboardRoutes;
