@@ -6,7 +6,7 @@ const imgStyle = {
 };
 
 function ListItem({ src }) {
-  return <img src={src} style={imgStyle} />;
+  return <img src={src} alt="" style={imgStyle} />;
 }
 
 export default ListItem;

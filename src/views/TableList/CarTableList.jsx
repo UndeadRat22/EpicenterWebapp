@@ -39,93 +39,91 @@ const styles = {
     }
   }
 };
+/*
+dateAndTime:
+"2018-12-12 17:50:02"
+id:
+5
+  missingModel:
+  {…}
+  firstName:
+  "Aloyzas"
+  id:
+  5
+  lastName:
+  "Vagylka"
+  message:
+  "KNS288"
+  reason:
+  1
+  type:
+  1*/
 
-function CarTableList(props) {
-  const { classes } = props;
-  return (
-    <GridContainer>
-      <GridItem xs={12} sm={12} md={12}>
-        <Card>
-          <CardHeader color="primary">
-            <h4 className={classes.cardTitleWhite}>Found Car Table</h4>
-            <p className={classes.cardCategoryWhite}>
-              Here is a subtitle for this table
-            </p>
-          </CardHeader>
-          <CardBody>
-            <Table
-              tableHeaderColor="primary"
-              tableHead={[
-                "Photo",
-                "Car Plate Number",
-                "First Name",
-                "Last Name",
-                "Search Reason",
-                "Time"
-              ]}
-              tableData={[
-                [
-                  <ListImage
-                    src={"https://www.w3schools.com/w3css/img_lights.jpg"}
-                    key={0}
-                  />,
-                  "699XXX",
-                  "Nigger",
-                  "got",
-                  "Criminal",
-                  "2018-09-01"
-                ],
-                [
-                  <ListImage
-                    src={"https://www.w3schools.com/w3css/img_lights.jpg"}
-                    key={0}
-                  />,
-                  "699XXX",
-                  "Nigger",
-                  "got",
-                  "Criminal",
-                  "2018-09-01"
-                ],
-                [
-                  <ListImage
-                    src={"https://www.w3schools.com/w3css/img_lights.jpg"}
-                    key={0}
-                  />,
-                  "699XXX",
-                  "Nigger",
-                  "got",
-                  "Criminal",
-                  "2018-09-01"
-                ],
-                [
-                  <ListImage
-                    src={"https://www.w3schools.com/w3css/img_lights.jpg"}
-                    key={0}
-                  />,
-                  "699XXX",
-                  "Nigger",
-                  "got",
-                  "Criminal",
-                  "2018-09-01"
-                ],
-                [
-                  <ListImage
-                    src={"https://www.w3schools.com/w3css/img_lights.jpg"}
-                    key={0}
-                  />,
-                  "699XXX",
-                  "Nigger",
-                  "got",
-                  "Criminal",
-                  "2018-09-01"
-                ]
-              ]}
-            />
-          </CardBody>
-        </Card>
-      </GridItem>
-    </GridContainer>
-  );
+class CarTableList extends React.Component {
+  mapResponseToTable(carList) {
+    const searchReason = ["Not searched", "Missing", "Criminal", "Other"];
+    console.log(carList);
+    return carList.map(member => {
+      return [
+        <ListImage
+          src={`data:image/png;base64, ${member.missingModel.baseImage}`}
+          key={0}
+        />,
+        member.missingModel.message,
+        member.missingModel.firstName,
+        member.missingModel.lastName,
+        searchReason[member.missingModel.reason],
+        member.dateAndTime
+      ];
+    });
+  }
+
+  state = { carList: [] };
+  componentDidMount() {
+    fetch("https://epicentereu.azurewebsites.net/api/cars/timestamps", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(response => {
+        if (response.status !== 200) return;
+        response.json().then(rjson => {
+          console.log(":-))))))))))))");
+          this.setState({ carList: rjson });
+        });
+      })
+      .catch(x => console.log(x));
+  }
+  render() {
+    const { classes } = this.props;
+    return (
+      <GridContainer>
+        <GridItem xs={12} sm={12} md={12}>
+          <Card>
+            <CardHeader color="primary">
+              <h4 className={classes.cardTitleWhite}>Found Cars</h4>
+              <p className={classes.cardCategoryWhite}>Last update: now</p>
+            </CardHeader>
+            <CardBody>
+              <Table
+                tableHeaderColor="primary"
+                tableHead={[
+                  "Photo",
+                  "Car Plate Number",
+                  "First Name",
+                  "Last Name",
+                  "Search Reason",
+                  "Time"
+                ]}
+                tableData={this.mapResponseToTable(this.state.carList)}
+              />
+            </CardBody>
+          </Card>
+        </GridItem>
+      </GridContainer>
+    );
+  }
 }
 
 export default withStyles(styles)(CarTableList);

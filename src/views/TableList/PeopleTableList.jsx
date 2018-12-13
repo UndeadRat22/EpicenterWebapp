@@ -8,7 +8,7 @@ import Table from "components/Table/Table.jsx";
 import Card from "components/Card/Card.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import CardBody from "components/Card/CardBody.jsx";
-import ListImage from "components/Image/ListImage.jsx";
+import ListImage from "../../components/Image/ListImage";
 
 const styles = {
   cardCategoryWhite: {
@@ -37,95 +37,71 @@ const styles = {
       fontWeight: "400",
       lineHeight: "1"
     }
-  },
-  listImage: {
-    width: 50,
-    height: 50
   }
 };
 
-function PeopleTableList(props) {
-  const { classes } = props;
-  return (
-    <GridContainer>
-      <GridItem xs={12} sm={12} md={12}>
-        <Card>
-          <CardHeader color="primary">
-            <h4 className={classes.cardTitleWhite}>
-              History of all found people
-            </h4>
-            <p className={classes.cardCategoryWhite}>
-              Here is a subtitle for this table
-            </p>
-          </CardHeader>
-          <CardBody>
-            <Table
-              tableHeaderColor="primary"
-              tableHead={[
-                "Photo",
-                "First Name",
-                "Last Name",
-                "Search Reason",
-                "Time"
-              ]}
-              tableData={[
-                [
-                  <ListImage
-                    src={"https://www.w3schools.com/w3css/img_lights.jpg"}
-                    key={0}
-                  />,
-                  "Nigger",
-                  "Faggot",
-                  "Criminal",
-                  "2018-09-01"
-                ],
-                [
-                  <ListImage
-                    src={"https://www.w3schools.com/w3css/img_lights.jpg"}
-                    key={0}
-                  />,
-                  "Nigger",
-                  "Faggot",
-                  "Criminal",
-                  "2018-09-01"
-                ],
-                [
-                  <ListImage
-                    src={"https://www.w3schools.com/w3css/img_lights.jpg"}
-                    key={0}
-                  />,
-                  "Nigger",
-                  "Faggot",
-                  "Criminal",
-                  "2018-09-01"
-                ],
-                [
-                  <ListImage
-                    src={"https://www.w3schools.com/w3css/img_lights.jpg"}
-                    key={0}
-                  />,
-                  "Nigger",
-                  "Faggot",
-                  "Criminal",
-                  "2018-09-01"
-                ],
-                [
-                  <ListImage
-                    src={"https://www.w3schools.com/w3css/img_lights.jpg"}
-                    key={0}
-                  />,
-                  "Nigger",
-                  "Faggot",
-                  "Criminal",
-                  "2018-09-01"
-                ]
-              ]}
-            />
-          </CardBody>
-        </Card>
-      </GridItem>
-    </GridContainer>
-  );
+class PeopleTableList extends React.Component {
+  mapResponseToTable(peopleList) {
+    const searchReason = ["Not searched", "Missing", "Criminal", "Other"];
+    return peopleList.map(member => {
+      return [
+        <ListImage
+          src={`data:image/png;base64, ${member.missingModel.baseImage}`}
+          key={0}
+        />,
+        member.missingModel.firstName,
+        member.missingModel.lastName,
+        searchReason[member.missingModel.reason],
+        member.dateAndTime
+      ];
+    });
+  }
+
+  state = { peopleList: [] };
+  componentDidMount() {
+    fetch("https://epicentereu.azurewebsites.net/api/persons/timestamps", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(response => {
+        if (response.status !== 200) return;
+        response.json().then(rjson => {
+          console.log(":-))))))))))))");
+          this.setState({ peopleList: rjson });
+        });
+      })
+      .catch(x => console.log(x));
+  }
+  render() {
+    const { classes } = this.props;
+    return (
+      <GridContainer>
+        <GridItem xs={12} sm={12} md={12}>
+          <Card>
+            <CardHeader color="primary">
+              <h4 className={classes.cardTitleWhite}>Found People</h4>
+              <p className={classes.cardCategoryWhite}>Last update: now</p>
+            </CardHeader>
+            <CardBody>
+              <Table
+                tableHeaderColor="primary"
+                tableHead={[
+                  "Photo",
+                  "First Name",
+                  "Last Name",
+                  "Search Reason",
+                  "Time"
+                ]}
+                tableData={this.mapResponseToTable(this.state.peopleList)}
+              />
+            </CardBody>
+          </Card>
+        </GridItem>
+      </GridContainer>
+    );
+  }
 }
 
 export default withStyles(styles)(PeopleTableList);
