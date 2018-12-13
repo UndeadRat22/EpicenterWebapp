@@ -81,10 +81,8 @@ class PeopleTableList extends React.Component {
         <GridItem xs={12} sm={12} md={12}>
           <Card>
             <CardHeader color="primary">
-              <h4 className={classes.cardTitleWhite}>Found Car Table</h4>
-              <p className={classes.cardCategoryWhite}>
-                Here is a subtitle for this table
-              </p>
+              <h4 className={classes.cardTitleWhite}>Found People</h4>
+              <p className={classes.cardCategoryWhite}>Last update: now</p>
             </CardHeader>
             <CardBody>
               <Table

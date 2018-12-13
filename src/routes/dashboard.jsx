@@ -17,9 +17,9 @@ import Accessibility from "@material-ui/icons/Accessibility";
 
 const dashboardRoutes = [
   {
-    path: "/dashboard",
-    sidebarName: "Dashboard",
-    navbarName: "Material Dashboard",
+    path: "/home",
+    sidebarName: "Home",
+    navbarName: "Epicenter Home",
     icon: Dashboard,
     component: DashboardPage
   },
@@ -31,14 +31,14 @@ const dashboardRoutes = [
     component: UserProfile
   },
   {
-    path: "/cartable",
+    path: "/cars",
     sidebarName: "Found Cars",
     navbarName: "Found Cars",
     icon: "directions_car",
     component: CarTableList
   },
   {
-    path: "/peopletable",
+    path: "/people",
     sidebarName: "Found People",
     navbarName: "Found People",
     icon: Accessibility,
@@ -51,7 +51,7 @@ const dashboardRoutes = [
     icon: LocationOn,
     component: Maps
   },
-  { redirect: true, path: "/", to: "/dashboard", navbarName: "Redirect" }
+  { redirect: true, path: "/", to: "/home", navbarName: "Redirect" }
 ];
 
 export default dashboardRoutes;
