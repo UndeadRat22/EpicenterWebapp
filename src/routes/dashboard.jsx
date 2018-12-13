@@ -10,16 +10,14 @@ import DashboardPage from "views/Dashboard/Dashboard.jsx";
 import UserProfile from "views/UserProfile/UserProfile.jsx";
 import PeopleTableList from "views/TableList/PeopleTableList.jsx";
 import CarTableList from "views/TableList/CarTableList.jsx";
-import Typography from "views/Typography/Typography.jsx";
 import Maps from "views/Maps/Maps.jsx";
-import NotificationsPage from "views/Notifications/Notifications.jsx";
 import Accessibility from "@material-ui/icons/Accessibility";
 
 const dashboardRoutes = [
   {
-    path: "/dashboard",
-    sidebarName: "Dashboard",
-    navbarName: "Material Dashboard",
+    path: "/home",
+    sidebarName: "Home",
+    navbarName: "Epicenter Home",
     icon: Dashboard,
     component: DashboardPage
   },

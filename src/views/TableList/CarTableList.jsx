@@ -39,25 +39,6 @@ const styles = {
     }
   }
 };
-/*
-dateAndTime:
-"2018-12-12 17:50:02"
-id:
-5
-  missingModel:
-  {…}
-  firstName:
-  "Aloyzas"
-  id:
-  5
-  lastName:
-  "Vagylka"
-  message:
-  "KNS288"
-  reason:
-  1
-  type:
-  1*/
 
 class CarTableList extends React.Component {
   mapResponseToTable(carList) {
@@ -102,9 +83,6 @@ class CarTableList extends React.Component {
           <Card>
             <CardHeader color="primary">
               <h4 className={classes.cardTitleWhite}>Found Car Table</h4>
-              <p className={classes.cardCategoryWhite}>
-                Here is a subtitle for this table
-              </p>
             </CardHeader>
             <CardBody>
               <Table
