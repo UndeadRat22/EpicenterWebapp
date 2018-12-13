@@ -46,7 +46,7 @@ class PeopleTableList extends React.Component {
     return peopleList.map(member => {
       return [
         <ListImage
-          src={"https://www.w3schools.com/w3css/img_lights.jpg"}
+          src={`data:image/png;base64, ${member.missingModel.baseImage}`}
           key={0}
         />,
         member.missingModel.firstName,
