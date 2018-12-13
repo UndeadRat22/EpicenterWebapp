@@ -112,7 +112,7 @@ class Dashboard extends React.Component {
               </CardHeader>
               <CardBody>
                 <Table
-                  tableHeaderColor="warning"
+                  tableHeaderColor="success"
                   tableHead={[
                     "First Name",
                     "Last Name",
@@ -138,7 +138,7 @@ class Dashboard extends React.Component {
               </CardHeader>
               <CardBody>
                 <Table
-                  tableHeaderColor="success"
+                  tableHeaderColor="warning"
                   tableHead={[
                     "Car Plate Number",
                     "First Name",
