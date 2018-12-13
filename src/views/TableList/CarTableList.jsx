@@ -80,7 +80,7 @@ class CarTableList extends React.Component {
   state = { carList: [] };
   componentDidMount() {
     fetch("https://epicentereu.azurewebsites.net/api/cars/timestamps", {
-      method: "GET",
+      method: "POST",
       headers: {
         "Content-Type": "application/json"
       }

@@ -60,7 +60,7 @@ class PeopleTableList extends React.Component {
   state = { peopleList: [] };
   componentDidMount() {
     fetch("https://epicentereu.azurewebsites.net/api/persons/timestamps", {
-      method: "GET",
+      method: "POST",
       headers: {
         "Content-Type": "application/json"
       }
