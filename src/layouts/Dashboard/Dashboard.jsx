@@ -75,7 +75,6 @@ class App extends React.Component {
           logo={logo}
           image={image}
           handleDrawerToggle={this.handleDrawerToggle}
-          open={this.state.mobileOpen}
           color="blue"
           {...rest}
         />
