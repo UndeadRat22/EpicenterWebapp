@@ -1,17 +1,12 @@
 // @material-ui/icons
 import Dashboard from "@material-ui/icons/Dashboard";
 import Person from "@material-ui/icons/Person";
-// import ContentPaste from "@material-ui/icons/ContentPaste";
-import LibraryBooks from "@material-ui/icons/LibraryBooks";
 import LocationOn from "@material-ui/icons/LocationOn";
-import Notifications from "@material-ui/icons/Notifications";
 // core components/views
 import DashboardPage from "views/Dashboard/Dashboard.jsx";
 import UserProfile from "views/UserProfile/UserProfile.jsx";
-import PeopleTableList from "views/TableList/PeopleTableList.jsx";
-import CarTableList from "views/TableList/CarTableList.jsx";
 import Maps from "views/Maps/Maps.jsx";
-import Accessibility from "@material-ui/icons/Accessibility";
+import FindsView from "../views/TableList/FindsView";
 
 const dashboardRoutes = [
   {
@@ -22,25 +17,11 @@ const dashboardRoutes = [
     component: DashboardPage
   },
   {
-    path: "/user",
-    sidebarName: "User Profile",
-    navbarName: "Profile",
-    icon: Person,
-    component: UserProfile
-  },
-  {
-    path: "/cars",
-    sidebarName: "Found Cars",
-    navbarName: "Found Cars",
-    icon: "directions_car",
-    component: CarTableList
-  },
-  {
-    path: "/people",
-    sidebarName: "Found People",
-    navbarName: "Found People",
-    icon: Accessibility,
-    component: PeopleTableList
+    path: "/findings",
+    sidebarName: "Findings",
+    navbarName: "Findings",
+    icon: "history",
+    component: FindsView
   },
   {
     path: "/maps",
@@ -48,6 +29,13 @@ const dashboardRoutes = [
     navbarName: "Map",
     icon: LocationOn,
     component: Maps
+  },
+  {
+    path: "/user",
+    sidebarName: "User Profile",
+    navbarName: "Profile",
+    icon: Person,
+    component: UserProfile
   },
   { redirect: true, path: "/", to: "/home", navbarName: "Redirect" }
 ];
