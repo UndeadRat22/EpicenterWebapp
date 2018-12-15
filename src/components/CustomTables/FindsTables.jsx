@@ -23,6 +23,7 @@ class FindsTables extends React.Component {
           last24hrsCallback={count => this.setState({ peopleFound24: count })}
           limit={this.props.limit}
           color={this.props.color1}
+          http={"POST"}
         />
         <TableList
           width={6}
@@ -35,6 +36,7 @@ class FindsTables extends React.Component {
           last24hrsCallback={count => this.setState({ carsFound24: count })}
           limit={this.props.limit}
           color={this.props.color2}
+          http={"POST"}
         />
       </GridContainer>
     );

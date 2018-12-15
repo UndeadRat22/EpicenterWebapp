@@ -41,7 +41,8 @@ const styles = {
 
 class TableList extends React.Component {
   state = {
-    carList: []
+    carList: [],
+    imageList: []
   };
 
   countLast24h(list) {
@@ -55,25 +56,39 @@ class TableList extends React.Component {
     }
     this.props.last24hrsCallback(list.length);
   }
-
+  /*src={`data:image/png;base64, ${member.missingModel.baseImage}`}*/
   mapResponseToTable(list, cars, time) {
     const searchReason = ["Not searched", "Missing", "Criminal", "Other"];
     let result = list.map(member => {
-      let arr = [
-        <ListImage
-          src={`data:image/png;base64, ${member.missingModel.baseImage}`}
-          key={0}
-        />,
-        member.missingModel.message,
-        member.missingModel.firstName,
-        member.missingModel.lastName,
-        searchReason[member.missingModel.reason],
-        member.dateAndTime
-      ];
+      let arr = [];
+      if (member.missingModel !== undefined) {
+        arr = [
+          <ListImage
+            src={`data:image/png;base64, ${member.baseImage}`}
+            key={0}
+          />,
+          member.missingModel.message,
+          member.missingModel.firstName,
+          member.missingModel.lastName,
+          searchReason[member.missingModel.reason],
+          member.dateAndTime
+        ];
+      } else {
+        arr = [
+          <ListImage
+            src={`data:image/png;base64, ${member.baseImage}`}
+            key={0}
+          />,
+          member.numberPlate,
+          member.firstName,
+          member.lastName,
+          searchReason[member.reason]
+        ];
+      }
       if (cars === false) {
         arr.splice(1, 1);
       }
-      if (time === false) {
+      if (time === false && member.missingModel !== undefined) {
         cars.splice(arr.length - 1, 1);
       }
       return arr;
@@ -83,25 +98,53 @@ class TableList extends React.Component {
     }
     return result.splice(0, this.props.limit);
   }
+  allMainRequests = fetch(this.props.url, {
+    method: this.props.http,
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }).then(response => {
+    if (response.status === 200) return Promise.resolve(response.json());
+    return Promise.reject(response.json());
+  });
 
-  componentDidMount() {
-    fetch(this.props.url, {
-      method: "POST",
+  baseImagesRequest = fetch(
+    this.props.carTable
+      ? "https://epicentereu.azurewebsites.net/api/cars/baseimages"
+      : "https://epicentereu.azurewebsites.net/api/persons/baseimages",
+    {
+      method: "GET",
       headers: {
         "Content-Type": "application/json"
       }
-    })
-      .then(response => {
-        if (response.status !== 200) return;
-        response.json().then(rjson => {
-          this.props.responseLenghtCallback(rjson.length);
-          this.setState({ carList: rjson });
-          if (this.props.timestamps) {
-            this.countLast24h(this.state.carList);
-          }
-        });
-      })
-      .catch(x => console.log(x));
+    }
+  ).then(response => {
+    if (response.status === 200) return Promise.resolve(response.json());
+    return Promise.reject(response.json());
+  });
+
+  componentDidMount() {
+    Promise.all([this.allMainRequests, this.baseImagesRequest]).then(
+      responseBody => {
+        const mapper = {};
+        //sucreatina mapperi is id -> img
+        responseBody[1].forEach(
+          missingModel => (mapper[missingModel.id] = missingModel.baseImage)
+        );
+        const responseList = responseBody[0].map(response => ({
+          ...response,
+          baseImage:
+            response.missingModel == undefined
+              ? mapper[response.id]
+              : mapper[response.missingModel.id]
+        }));
+        this.setState({ carList: responseList });
+        this.props.responseLenghtCallback(responseList.length);
+        if (this.props.timestamps) {
+          this.countLast24h(this.state.carList);
+        }
+      }
+    );
   }
   render() {
     const { classes } = this.props;

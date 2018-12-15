@@ -12,12 +12,10 @@ import GridContainer from "components/Grid/GridContainer.jsx";
 import Card from "components/Card/Card.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import CardIcon from "components/Card/CardIcon.jsx";
-import CardBody from "components/Card/CardBody.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 import TableList from "components/CustomTables/TableList.jsx";
 
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
-import FindsTables from "../../components/CustomTables/FindsTables";
 
 class Dashboard extends React.Component {
   state = {
@@ -123,6 +121,7 @@ class Dashboard extends React.Component {
             last24hrsCallback={count => this.setState({ peopleFound24: count })}
             limit={10}
             color={"success"}
+            http={"POST"}
           />
           <TableList
             width={6}
@@ -135,6 +134,7 @@ class Dashboard extends React.Component {
             last24hrsCallback={count => this.setState({ carsFound24: count })}
             limit={10}
             color={"warning"}
+            http={"POST"}
           />
         </GridContainer>
       </div>

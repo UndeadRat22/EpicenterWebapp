@@ -6,7 +6,8 @@ import LocationOn from "@material-ui/icons/LocationOn";
 import DashboardPage from "views/Dashboard/Dashboard.jsx";
 import UserProfile from "views/UserProfile/UserProfile.jsx";
 import Maps from "views/Maps/Maps.jsx";
-import FindsView from "../views/TableList/FindsView";
+import FindsView from "../views/Finds/FindsView";
+import MissingModelView from "../views/MissingModels/MissingModelView";
 
 const dashboardRoutes = [
   {
@@ -22,6 +23,13 @@ const dashboardRoutes = [
     navbarName: "Findings",
     icon: "history",
     component: FindsView
+  },
+  {
+    path: "/missing",
+    sidebarName: "Missing",
+    navbarName: "Missing",
+    icon: "portrait",
+    component: MissingModelView
   },
   {
     path: "/maps",
