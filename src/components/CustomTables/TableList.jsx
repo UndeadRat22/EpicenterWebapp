@@ -9,6 +9,10 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import ListImage from "../../components/Image/ListImage";
 
+import ClearIcon from "@material-ui/icons/Clear";
+import EditIcon from "@material-ui/icons/Edit";
+import IconButton from "@material-ui/core/IconButton";
+
 const styles = {
   cardCategoryWhite: {
     "&,& a,& a:hover,& a:focus": {
@@ -82,7 +86,15 @@ class TableList extends React.Component {
           member.numberPlate,
           member.firstName,
           member.lastName,
-          searchReason[member.reason]
+          searchReason[member.reason],
+          <div key={5} numeric={true}>
+            <IconButton>
+              <EditIcon color={"primary"} />
+            </IconButton>
+            <IconButton>
+              <ClearIcon style={{ color: "red" }} />
+            </IconButton>
+          </div>
         ];
       }
       if (cars === false) {
@@ -160,6 +172,8 @@ class TableList extends React.Component {
     }
     if (this.props.timestamps) {
       tableHeader.push("Time");
+    } else {
+      tableHeader.push(<div numeric={true} />);
     }
     return (
       <GridItem xs={12} sm={12} md={this.props.width}>

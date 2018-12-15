@@ -19,6 +19,21 @@ function CustomTable({ ...props }) {
           <TableHead className={classes[tableHeaderColor + "TableHeader"]}>
             <TableRow>
               {tableHead.map((prop, key) => {
+                if (prop.props !== undefined) {
+                  if (prop.props.numeric !== undefined) {
+                    return (
+                      <TableCell
+                        className={
+                          classes.tableCell + " " + classes.tableHeadCell
+                        }
+                        key={key}
+                        numeric
+                      >
+                        {prop}
+                      </TableCell>
+                    );
+                  }
+                }
                 return (
                   <TableCell
                     className={classes.tableCell + " " + classes.tableHeadCell}
@@ -36,6 +51,19 @@ function CustomTable({ ...props }) {
             return (
               <TableRow key={key}>
                 {prop.map((prop, key) => {
+                  if (prop.props !== undefined) {
+                    if (prop.props.numeric !== undefined) {
+                      return (
+                        <TableCell
+                          numeric
+                          className={classes.tableCell}
+                          key={key}
+                        >
+                          {prop}
+                        </TableCell>
+                      );
+                    }
+                  }
                   return (
                     <TableCell className={classes.tableCell} key={key}>
                       {prop}
