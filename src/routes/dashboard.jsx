@@ -25,9 +25,9 @@ const dashboardRoutes = [
     component: FindsView
   },
   {
-    path: "/missing",
-    sidebarName: "Missing",
-    navbarName: "Missing",
+    path: "/subjects",
+    sidebarName: "Subjects",
+    navbarName: "Subjects",
     icon: "portrait",
     component: MissingModelView
   },
