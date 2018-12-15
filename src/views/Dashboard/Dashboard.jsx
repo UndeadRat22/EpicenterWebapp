@@ -19,6 +19,7 @@ import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardS
 
 class Dashboard extends React.Component {
   state = {
+    doneLoading: false,
     peopleFound24: 0,
     carsFound24: 0,
     peopleFound: 0,
@@ -116,7 +117,7 @@ class Dashboard extends React.Component {
             timestamps={true}
             url={"https://epicentereu.azurewebsites.net/api/persons/timestamps"}
             responseLenghtCallback={count =>
-              this.setState({ peopleFound: count })
+              this.setState({ peopleFound: count, doneLoading: true })
             }
             last24hrsCallback={count => this.setState({ peopleFound24: count })}
             limit={10}

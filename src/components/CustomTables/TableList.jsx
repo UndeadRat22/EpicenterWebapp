@@ -91,7 +91,7 @@ class TableList extends React.Component {
             <IconButton>
               <EditIcon color={"primary"} />
             </IconButton>
-            <IconButton>
+            <IconButton onClick={this.props.handleDelete}>
               <ClearIcon style={{ color: "red" }} />
             </IconButton>
           </div>
@@ -182,6 +182,11 @@ class TableList extends React.Component {
             <h4 className={classes.cardTitleWhite}>
               {this.props.carTable ? "Cars" : "People"}
             </h4>
+            {this.state.carList.length > 0 ? (
+              <p className={classes.cardCategoryWhite}>Last update: Now</p>
+            ) : (
+              <p className={classes.cardCategoryWhite}>Getting data...</p>
+            )}
           </CardHeader>
           <CardBody>
             <Table
