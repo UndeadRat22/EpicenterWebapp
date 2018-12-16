@@ -47,7 +47,9 @@ class AddItemButton extends React.Component {
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
-          <DialogTitle id="alert-dialog-title">{"Title"}</DialogTitle>
+          <DialogTitle id="alert-dialog-title">
+            {this.props.car ? "Add new car " : "Add new person"}
+          </DialogTitle>
           <DialogContent>
             <GridContainer>
               {this.props.car ? (

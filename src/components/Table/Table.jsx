@@ -49,7 +49,14 @@ function CustomTable({ ...props }) {
         <TableBody>
           {tableData.map((prop, key) => {
             return (
-              <TableRow key={key}>
+              <TableRow
+                key={key}
+                onClick={() => {
+                  props.onClickCallbacks !== undefined
+                    ? props.onClickCallbacks[key]()
+                    : null;
+                }}
+              >
                 {prop.map((prop, key) => {
                   if (prop.props !== undefined) {
                     if (prop.props.numeric !== undefined) {
