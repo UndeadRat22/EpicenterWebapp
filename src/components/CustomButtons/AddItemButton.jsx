@@ -10,10 +10,10 @@ import GridItem from "components/Grid/GridItem.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import CustomInput from "components/CustomInput/CustomInput.jsx";
 
-import EditIcon from "@material-ui/icons/Edit";
+import AddCircleIcon from "@material-ui/icons/AddCircle";
 import IconButton from "@material-ui/core/IconButton";
 
-class EditItemButton extends React.Component {
+class AddItemButton extends React.Component {
   state = {
     open: false
   };
@@ -26,18 +26,18 @@ class EditItemButton extends React.Component {
     this.setState({ open: false });
   };
 
-  handleEditConfirm = () => {
+  handleAddConfirm = () => {
     this.handleClose();
-    this.props.deleteEditCallback === undefined
+    this.props.addConfirmCallback === undefined
       ? () => {}
-      : this.props.deleteEditCallback();
+      : this.props.addConfirmCallback();
   };
 
   render() {
     return (
       <span>
         <IconButton onClick={this.handleClickOpen}>
-          <EditIcon color={"primary"} />
+          <AddCircleIcon style={{ width: 35, height: 35, color: "white" }} />
         </IconButton>
         <Dialog
           open={this.state.open}
@@ -45,9 +45,7 @@ class EditItemButton extends React.Component {
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
-          <DialogTitle id="alert-dialog-title">
-            {"Edit " + this.props.toEdit}
-          </DialogTitle>
+          <DialogTitle id="alert-dialog-title">{"Title"}</DialogTitle>
           <DialogContent>
             <GridContainer>
               {this.props.car ? (
@@ -91,8 +89,8 @@ class EditItemButton extends React.Component {
             </GridContainer>
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleEditConfirm} color="primary" autoFocus>
-              Submit
+            <Button onClick={this.handleAddConfirm} color="primary" autoFocus>
+              Add
             </Button>
             <Button onClick={this.handleClose} color="primary">
               Cancel
@@ -104,4 +102,4 @@ class EditItemButton extends React.Component {
   }
 }
 
-export default EditItemButton;
+export default AddItemButton;

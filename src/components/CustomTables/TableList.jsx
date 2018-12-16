@@ -8,11 +8,12 @@ import Card from "components/Card/Card.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import ListImage from "../../components/Image/ListImage";
+import GridContainer from "components/Grid/GridContainer.jsx";
 
-import EditIcon from "@material-ui/icons/Edit";
-import IconButton from "@material-ui/core/IconButton";
+import Button from "@material-ui/core/Button";
 import DeleteItemButton from "../CustomButtons/DeleteItemButton";
 import EditItemButton from "../CustomButtons/EditItemButton";
+import AddItemButton from "../CustomButtons/AddItemButton";
 
 const styles = {
   cardCategoryWhite: {
@@ -183,20 +184,29 @@ class TableList extends React.Component {
     if (this.props.timestamps) {
       tableHeader.push("Time");
     } else {
-      tableHeader.push(<div numeric={true} />);
+      tableHeader.push(<div numeric />);
     }
     return (
       <GridItem xs={12} sm={12} md={this.props.width}>
         <Card>
           <CardHeader color={this.props.color}>
-            <h4 className={classes.cardTitleWhite}>
-              {this.props.carTable ? "Cars" : "People"}
-            </h4>
-            {this.state.carList.length > 0 ? (
-              <p className={classes.cardCategoryWhite}>Last update: Now</p>
-            ) : (
-              <p className={classes.cardCategoryWhite}>Getting data...</p>
-            )}
+            <GridContainer>
+              <GridItem xs={12} sm={12} md={11}>
+                <h4 className={classes.cardTitleWhite}>
+                  {this.props.carTable ? "Cars" : "People"}
+                </h4>
+                {this.state.carList.length > 0 ? (
+                  <p className={classes.cardCategoryWhite}>Last update: Now</p>
+                ) : (
+                  <p className={classes.cardCategoryWhite}>Getting data...</p>
+                )}
+              </GridItem>
+              <GridItem xs={12} sm={12} md={1}>
+                {this.props.timestamps ? null : (
+                  <AddItemButton car={this.props.carTable} />
+                )}
+              </GridItem>
+            </GridContainer>
           </CardHeader>
           <CardBody>
             <Table
