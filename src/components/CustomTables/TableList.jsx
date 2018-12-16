@@ -9,9 +9,10 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import ListImage from "../../components/Image/ListImage";
 
-import ClearIcon from "@material-ui/icons/Clear";
 import EditIcon from "@material-ui/icons/Edit";
 import IconButton from "@material-ui/core/IconButton";
+import DeleteItemButton from "../CustomButtons/DeleteItemButton";
+import EditItemButton from "../CustomButtons/EditItemButton";
 
 const styles = {
   cardCategoryWhite: {
@@ -88,12 +89,21 @@ class TableList extends React.Component {
           member.lastName,
           searchReason[member.reason],
           <div key={5} numeric={true}>
-            <IconButton>
-              <EditIcon color={"primary"} />
-            </IconButton>
-            <IconButton onClick={this.props.handleDelete}>
-              <ClearIcon style={{ color: "red" }} />
-            </IconButton>
+            <EditItemButton
+              car={cars}
+              toEdit={
+                cars
+                  ? member.numberPlate
+                  : member.firstName + " " + member.lastName
+              }
+            />
+            <DeleteItemButton
+              toRemove={
+                cars
+                  ? member.numberPlate
+                  : member.firstName + " " + member.lastName
+              }
+            />
           </div>
         ];
       }
