@@ -56,9 +56,9 @@ class DeleteItemButton extends React.Component {
               autoFocus
             >
               Yes
-            </Button>
-            <Button onClick={this.handleClose} color="primary">
-              No
+              <Button onClick={this.handleClose} color="primary">
+                No
+              </Button>
             </Button>
           </DialogActions>
         </Dialog>
