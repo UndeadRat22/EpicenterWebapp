@@ -6,7 +6,10 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
-class DeleteItemAlert extends React.Component {
+import ClearIcon from "@material-ui/icons/Clear";
+import IconButton from "@material-ui/core/IconButton";
+
+class DeleteItemButton extends React.Component {
   state = {
     open: false
   };
@@ -19,14 +22,19 @@ class DeleteItemAlert extends React.Component {
     this.setState({ open: false });
   };
 
-  handleCloseConfirm = () => {
-    this.setState({ open: false });
-    this.props.handleConfirm();
+  handleDeleteConfirm = () => {
+    this.handleClose();
+    this.props.deleteConfirmCallback === undefined
+      ? () => {}
+      : this.props.deleteConfirmCallback();
   };
 
   render() {
     return (
-      <div>
+      <span>
+        <IconButton onClick={this.handleClickOpen}>
+          <ClearIcon style={{ color: "red" }} />
+        </IconButton>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
@@ -34,26 +42,29 @@ class DeleteItemAlert extends React.Component {
           aria-describedby="alert-dialog-description"
         >
           <DialogTitle id="alert-dialog-title">
-            {"Use Google's location service?"}
+            {"Remove " + this.props.toRemove}
           </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-              Let Google help apps determine location. This means sending
-              anonymous location data to Google, even when no apps are running.
+              {"You can't undo this action! Are you sure?"}
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
-              Disagree
+            <Button
+              onClick={this.handleDeleteConfirm}
+              color="primary"
+              autoFocus
+            >
+              Yes
             </Button>
-            <Button onClick={this.handleCloseConfirm} color="primary" autoFocus>
-              Agree
+            <Button onClick={this.handleClose} color="primary">
+              No
             </Button>
           </DialogActions>
         </Dialog>
-      </div>
+      </span>
     );
   }
 }
 
-export default DeleteItemAlert;
+export default DeleteItemButton;

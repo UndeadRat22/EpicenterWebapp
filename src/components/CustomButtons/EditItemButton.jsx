@@ -1,0 +1,111 @@
+import React from "react";
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+
+import GridItem from "components/Grid/GridItem.jsx";
+import GridContainer from "components/Grid/GridContainer.jsx";
+import CustomInput from "components/CustomInput/CustomInput.jsx";
+
+import EditIcon from "@material-ui/icons/Edit";
+import IconButton from "@material-ui/core/IconButton";
+
+class EditItemButton extends React.Component {
+  state = {
+    open: false
+  };
+
+  handleClickOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
+  handleDeleteConfirm = () => {
+    this.handleClose();
+    this.props.deleteConfirmCallback === undefined
+      ? () => {}
+      : this.props.deleteConfirmCallback();
+  };
+
+  render() {
+    return (
+      <span>
+        <IconButton onClick={this.handleClickOpen}>
+          <EditIcon color={"primary"} />
+        </IconButton>
+        <Dialog
+          open={this.state.open}
+          onClose={this.handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">
+            {"Edit " + this.props.toEdit}
+          </DialogTitle>
+          <DialogContent>
+            <GridContainer>
+              {this.props.car ? (
+                <GridItem xs={12} sm={12} md={12}>
+                  <CustomInput
+                    labelText="Number Plate"
+                    id="number-plate"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                  />
+                </GridItem>
+              ) : null}
+              <GridItem xs={12} sm={12} md={12}>
+                <CustomInput
+                  labelText="First Name"
+                  id="first-name"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                />
+              </GridItem>
+              <GridItem xs={12} sm={12} md={12}>
+                <CustomInput
+                  labelText="Last Name"
+                  id="last-name"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                />
+              </GridItem>
+              <GridItem xs={12} sm={12} md={12}>
+                <CustomInput
+                  labelText="Search Reason"
+                  id="search-reason"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                />
+              </GridItem>
+            </GridContainer>
+          </DialogContent>
+          <DialogActions>
+            <Button
+              onClick={this.handleDeleteConfirm}
+              color="primary"
+              autoFocus
+            >
+              Submit
+            </Button>
+            <Button onClick={this.handleClose} color="primary">
+              Cancel
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </span>
+    );
+  }
+}
+
+export default EditItemButton;
