@@ -12,6 +12,7 @@ import CustomInput from "components/CustomInput/CustomInput.jsx";
 
 import EditIcon from "@material-ui/icons/Edit";
 import IconButton from "@material-ui/core/IconButton";
+import MenuInput from "../CustomInput/MenuInput";
 
 class EditItemButton extends React.Component {
   state = {
@@ -80,13 +81,10 @@ class EditItemButton extends React.Component {
                 />
               </GridItem>
               <GridItem xs={12} sm={12} md={12}>
-                <CustomInput
-                  labelText="Search Reason"
-                  id="search-reason"
-                  formControlProps={{
-                    fullWidth: true
-                  }}
-                />
+                <p2>Search Reason</p2>
+              </GridItem>
+              <GridItem xs={12} sm={12} md={12}>
+                <MenuInput />
               </GridItem>
             </GridContainer>
           </DialogContent>

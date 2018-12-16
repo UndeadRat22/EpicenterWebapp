@@ -62,7 +62,19 @@ class TableList extends React.Component {
     }
     this.props.last24hrsCallback(list.length);
   }
-  /*src={`data:image/png;base64, ${member.missingModel.baseImage}`}*/
+  generateOnClickCallbacks(list, time) {
+    if (!time) {
+      return undefined;
+    }
+    return list.map(member => {
+      return () => {
+        console.log("member");
+        console.log(member.latitude);
+        console.log(member.longitude);
+      };
+    });
+  }
+
   mapResponseToTable(list, cars, time) {
     const searchReason = ["Not searched", "Missing", "Criminal", "Other"];
     let result = list.map(member => {
@@ -161,6 +173,7 @@ class TableList extends React.Component {
               ? mapper[response.id]
               : mapper[response.missingModel.id]
         }));
+        console.log(responseList);
         this.setState({ carList: responseList });
         this.props.responseLenghtCallback(responseList.length);
         if (this.props.timestamps) {
@@ -215,6 +228,10 @@ class TableList extends React.Component {
               tableData={this.mapResponseToTable(
                 this.state.carList,
                 this.props.carTable,
+                this.props.timestamps
+              )}
+              onClickCallbacks={this.generateOnClickCallbacks(
+                this.state.carList,
                 this.props.timestamps
               )}
             />
