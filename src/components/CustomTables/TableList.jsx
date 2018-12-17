@@ -14,6 +14,7 @@ import Button from "@material-ui/core/Button";
 import DeleteItemButton from "../CustomButtons/DeleteItemButton";
 import EditItemButton from "../CustomButtons/EditItemButton";
 import AddItemButton from "../CustomButtons/AddItemButton";
+import { Router, Route, Switch, NavLink } from "react-router-dom";
 
 const styles = {
   cardCategoryWhite: {
@@ -68,15 +69,25 @@ class TableList extends React.Component {
     }
     return list.map(member => {
       return () => {
-        console.log("member");
-        console.log(member.latitude);
-        console.log(member.longitude);
+        <NavLink to="maps"> NavLink </NavLink>;
       };
+    });
+  }
+
+  generateLocationArray(list, time) {
+    if (!time) {
+      return undefined;
+    }
+    return list.map(member => {
+      let lati = member.latitude;
+      let long = member.longitude;
+      return { lati, long };
     });
   }
 
   mapResponseToTable(list, cars, time) {
     const searchReason = ["Not searched", "Missing", "Criminal", "Other"];
+    let outerKey = 0;
     let result = list.map(member => {
       let arr = [];
       if (member.missingModel !== undefined) {
@@ -84,6 +95,7 @@ class TableList extends React.Component {
           <ListImage
             src={`data:image/png;base64, ${member.baseImage}`}
             key={0}
+            outer={outerKey}
           />,
           member.missingModel.message,
           member.missingModel.firstName,
@@ -120,6 +132,7 @@ class TableList extends React.Component {
           </div>
         ];
       }
+      outerKey += 1;
       if (cars === false) {
         arr.splice(1, 1);
       }
@@ -231,6 +244,10 @@ class TableList extends React.Component {
                 this.props.timestamps
               )}
               onClickCallbacks={this.generateOnClickCallbacks(
+                this.state.carList,
+                this.props.timestamps
+              )}
+              locArr={this.generateLocationArray(
                 this.state.carList,
                 this.props.timestamps
               )}

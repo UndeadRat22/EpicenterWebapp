@@ -9,6 +9,9 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 // core components
 import tableStyle from "assets/jss/material-dashboard-react/components/tableStyle.jsx";
+import ReactDOM from "react-dom";
+import { createBrowserHistory } from "history";
+import { Router, Route, Switch, NavLink } from "react-router-dom";
 
 function CustomTable({ ...props }) {
   const { classes, tableHead, tableData, tableHeaderColor } = props;
@@ -70,10 +73,24 @@ function CustomTable({ ...props }) {
                         </TableCell>
                       );
                     }
+                    if (prop.props.outer !== undefined) {
+                      return (
+                        <TableCell className={classes.tableCell} key={key}>
+                          <NavLink
+                            to={`maps/${props.locArr[prop.props.outer].long}/${
+                              props.locArr[prop.props.outer].lati
+                            }`}
+                          >
+                            {prop}
+                          </NavLink>
+                          {console.log(props.locArr[prop.props.outer])}
+                        </TableCell>
+                      );
+                    }
                   }
                   return (
                     <TableCell className={classes.tableCell} key={key}>
-                      {prop}
+                      <NavLink to="maps">{prop} </NavLink>
                     </TableCell>
                   );
                 })}
