@@ -86,6 +86,16 @@ class EditItemButton extends React.Component {
               <GridItem xs={12} sm={12} md={12}>
                 <MenuInput />
               </GridItem>
+              <GridItem xs={12} sm={12} md={12}>
+                <CustomInput
+                  labelText="Image"
+                  id="base-image"
+                  formControlProps={{
+                    fullWidth: true
+                  }}
+                  inputProps={{type: "file"}}
+                />
+              </GridItem>
             </GridContainer>
           </DialogContent>
           <DialogActions>
