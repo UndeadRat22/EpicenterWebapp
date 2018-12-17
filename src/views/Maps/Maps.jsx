@@ -8,9 +8,12 @@ import {
 
 const CustomSkinMap = withScriptjs(
   withGoogleMap(props => {
+    console.log("LOCATION:");
+    console.log(props.location);
+    console.log(props.zoom);
     return (
       <GoogleMap
-        defaultZoom={13}
+        defaultZoom={props.zoom}
         defaultCenter={{
           lat: parseFloat(props.location.longitude),
           lng: parseFloat(props.location.latitude)
@@ -127,10 +130,13 @@ class Maps extends React.Component {
         latitude: "25.316883711840937"
       }
     };
+    const isSpecific = !isNaN(this.props.match.params.latitude) && !isNaN(this.props.match.params.longitude);
+    console.log(isSpecific);
     return (
       <CustomSkinMap
+      zoom={isSpecific ? 19 : 13}
         location={
-          this.props.match.params && {
+          isSpecific ? this.props.match.params : {
             longitude: pos.coords.longitude,
             latitude: pos.coords.latitude
           }
