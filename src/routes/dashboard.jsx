@@ -32,7 +32,7 @@ const dashboardRoutes = [
     component: MissingModelView
   },
   {
-    path: "/maps",
+    path: "/maps/:latitude/:longitude",
     sidebarName: "Maps",
     navbarName: "Map",
     icon: LocationOn,
