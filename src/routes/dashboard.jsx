@@ -38,13 +38,6 @@ const dashboardRoutes = [
     icon: LocationOn,
     component: Maps
   },
-  {
-    path: "/user",
-    sidebarName: "User Profile",
-    navbarName: "Profile",
-    icon: Person,
-    component: UserProfile
-  },
   { redirect: true, path: "/", to: "/home", navbarName: "Redirect" }
 ];
 
