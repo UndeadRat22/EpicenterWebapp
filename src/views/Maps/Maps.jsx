@@ -80,38 +80,69 @@ const CustomSkinMap = withScriptjs(
           ]
         }}
       >
-        <Marker
-          position={{
-            lat: parseFloat(props.location.longitude),
-            lng: parseFloat(props.location.latitude)
-          }}
-        />
+        {props.markers}
       </GoogleMap>
     );
   })
 );
 
-function Maps({ ...props }) {
-  let pos = {
-    coords: {
-      longitude: "54.703369411923255",
-      latitude: "25.316883711840937"
-    }
+class Maps extends React.Component {
+  state = {
+    allMarkers: []
   };
-  return (
-    <CustomSkinMap
-      location={
-        props.match.params && {
-          longitude: pos.coords.longitude,
-          latitude: pos.coords.latitude
-        }
+
+  componentDidMount() {
+    fetch("https://epicentereu.azurewebsites.net/api/timestamps", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
       }
-      googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuD_4MSfBdHkJQA0XsinH1j0IhfuDFLMc"
-      loadingElement={<div style={{ height: `100%` }} />}
-      containerElement={<div style={{ height: `100vh` }} />}
-      mapElement={<div style={{ height: `100%` }} />}
-    />
-  );
+    })
+      .then(response => {
+        if (response.status === 200) return Promise.resolve(response.json());
+        return Promise.reject(response.json());
+      })
+      .then(timestamps => {
+        const markers = timestamps.map(timestamp => (
+          <Marker
+            position={{ lat: timestamp.latitude, lng: timestamp.longitude }}
+            title={
+              timestamp.missingModel.type === 0
+                ? `${timestamp.missingModel.firstName} ${timestamp.missingModel
+                    .lastName}`
+                : timestamp.missingModel.message
+            }
+            description={timestamp.dateAndTime}
+          />
+        ));
+        this.setState({ allMarkers: markers });
+      })
+      .catch(() => console.log("Timestamps fetch fail"));
+  }
+
+  render() {
+    let pos = {
+      coords: {
+        longitude: "54.703369411923255",
+        latitude: "25.316883711840937"
+      }
+    };
+    return (
+      <CustomSkinMap
+        location={
+          this.props.match.params && {
+            longitude: pos.coords.longitude,
+            latitude: pos.coords.latitude
+          }
+        }
+        markers={this.state.allMarkers}
+        googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuD_4MSfBdHkJQA0XsinH1j0IhfuDFLMc"
+        loadingElement={<div style={{ height: `100%` }} />}
+        containerElement={<div style={{ height: `100vh` }} />}
+        mapElement={<div style={{ height: `100%` }} />}
+      />
+    );
+  }
 }
 
 export default Maps;
