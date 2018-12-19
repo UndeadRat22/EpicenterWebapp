@@ -9,6 +9,9 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 // core components
 import tableStyle from "assets/jss/material-dashboard-react/components/tableStyle.jsx";
+import ReactDOM from "react-dom";
+import { createBrowserHistory } from "history";
+import { Router, Route, Switch, NavLink } from "react-router-dom";
 
 function CustomTable({ ...props }) {
   const { classes, tableHead, tableData, tableHeaderColor } = props;
@@ -19,6 +22,21 @@ function CustomTable({ ...props }) {
           <TableHead className={classes[tableHeaderColor + "TableHeader"]}>
             <TableRow>
               {tableHead.map((prop, key) => {
+                if (prop.props !== undefined) {
+                  if (prop.props.numeric !== undefined) {
+                    return (
+                      <TableCell
+                        className={
+                          classes.tableCell + " " + classes.tableHeadCell
+                        }
+                        key={key}
+                        numeric
+                      >
+                        {prop}
+                      </TableCell>
+                    );
+                  }
+                }
                 return (
                   <TableCell
                     className={classes.tableCell + " " + classes.tableHeadCell}
@@ -34,11 +52,45 @@ function CustomTable({ ...props }) {
         <TableBody>
           {tableData.map((prop, key) => {
             return (
-              <TableRow key={key}>
+              <TableRow
+                key={key}
+                onClick={() => {
+                  props.onClickCallbacks !== undefined
+                    ? props.onClickCallbacks[key]()
+                    : null;
+                }}
+              >
                 {prop.map((prop, key) => {
+                  if (prop.props !== undefined) {
+                    if (prop.props.numeric !== undefined) {
+                      return (
+                        <TableCell
+                          numeric
+                          className={classes.tableCell}
+                          key={key}
+                        >
+                          {prop}
+                        </TableCell>
+                      );
+                    }
+                    if (prop.props.outer !== undefined) {
+                      return (
+                        <TableCell className={classes.tableCell} key={key}>
+                          <NavLink
+                            to={`maps/${props.locArr[prop.props.outer].long}/${
+                              props.locArr[prop.props.outer].lati
+                            }`}
+                          >
+                            {prop}
+                          </NavLink>
+                          {console.log(props.locArr[prop.props.outer])}
+                        </TableCell>
+                      );
+                    }
+                  }
                   return (
                     <TableCell className={classes.tableCell} key={key}>
-                      {prop}
+                      <NavLink to="maps">{prop} </NavLink>
                     </TableCell>
                   );
                 })}

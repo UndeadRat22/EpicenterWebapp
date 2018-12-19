@@ -157,8 +157,8 @@ function UserProfile(props) {
               </a>
             </CardAvatar>
             <CardBody profile>
-              <h6 className={classes.cardCategory}>CEO / CO-FOUNDER</h6>
-              <h4 className={classes.cardTitle}>Alec Thompson</h4>
+              <h6 className={classes.cardCategory}>:D</h6>
+              <h4 className={classes.cardTitle}>Saulius Skvernelis</h4>
               <p className={classes.description}>
                 nežinau ar šitą vertą palikt :D
               </p>
